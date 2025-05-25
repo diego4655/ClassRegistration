@@ -1,0 +1,19 @@
+<div class="flex flex-column">
+    <p-button label="regresar" (onClick)="navigateToMainview()"></p-button>
+</div>
+
+
+<div class="container">
+    <div class="card-container">
+        <div class="card flex justify-content-center">
+            <p-card header="Crear estudiante">
+                <p-floatLabel>
+                    <input pInputText  id="name" [(ngModel)]="value" />
+                    <label for="name">Nombre</label>
+                </p-floatLabel>
+                <br>
+                <p-button label="Crear estudiante" (onClick)="onSubmit()"></p-button>
+            </p-card>
+        </div>
+    </div>
+</div>

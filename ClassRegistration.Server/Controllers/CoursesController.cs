@@ -1,8 +1,5 @@
 using ClassRegistration.Server.Application.Courses.Queries.GetAllCourses;
 using ClassRegistration.Server.Domain.Models;
-using ClassRegistration.Server.Features.Courses.Commands.CreateCourse;
-using ClassRegistration.Server.Features.Courses.Queries.GetAllCourses;
-using ClassRegistration.Server.Features.Courses.Queries.GetCourse;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,8 +19,7 @@ public class CoursesController : ControllerBase
   
 
  
-    [HttpGet]
-    [Route("Courses")]
+    [HttpGet]    
     public async Task<ActionResult<List<Course>>> GetAllCourses()
     {
         GetAllCourseQuery query = new GetAllCourseQuery();

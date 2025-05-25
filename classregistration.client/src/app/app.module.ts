@@ -5,17 +5,34 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
+import { RegisterStudentComponent } from './components/register-student/register-student.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RegisterClassForStudentComponent } from './components/register-class-for-student/register-class-for-student.component';
+import { CardModule } from 'primeng/card';
+import { MainviewComponent } from './components/mainview/mainview.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,    
+    RegisterStudentComponent,
+    RegisterClassForStudentComponent,
+    MainviewComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    ButtonModule
+    ButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CardModule,
+    InputTextModule,
+    FloatLabelModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

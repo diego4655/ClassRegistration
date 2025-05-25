@@ -1,0 +1,11 @@
+<div class="flex flex-column">
+    <p-button label="regresar" (onClick)="navigateToMainview()"></p-button>
+</div>
+
+<p-card header="Registrar clase para estudiante">
+    <div class="pixOrder">
+        <p-dropdown [options]="students" [(ngModel)]="selectedStudent" optionLabel="name" placeholder="Selecciona un estudiante"></p-dropdown>
+        <p-dropdown [options]="courses" [(ngModel)]="selectedCourse" optionLabel="name" placeholder="Selecciona una clase"></p-dropdown>        
+            <input type="text" pInputText  id="Profesor" [ngModel]="selectedCourse?.teacherName"  placeholder="Profesor"/>               
+    </div>
+</p-card>
