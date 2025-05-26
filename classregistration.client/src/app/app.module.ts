@@ -13,13 +13,17 @@ import { MainviewComponent } from './components/mainview/mainview.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DropdownModule } from 'primeng/dropdown';
+import { LookStudentCoursesComponent } from './components/look-student-courses/look-student-courses.component';
+import { TableModule } from 'primeng/table';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,    
     RegisterStudentComponent,
     RegisterClassForStudentComponent,
-    MainviewComponent
+    MainviewComponent,
+    LookStudentCoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { DropdownModule } from 'primeng/dropdown';
     CardModule,
     InputTextModule,
     FloatLabelModule,
-    DropdownModule
+    DropdownModule,
+    TableModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

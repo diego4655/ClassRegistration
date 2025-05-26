@@ -19,6 +19,7 @@ public class StudentCommandHandler : IRequestHandler<StudentCommand, bool>
             {
                 Id = Guid.NewGuid(),
                 Name = request.Name,
+                Credits = 10
             };
             _context.Students.Add(student);
             await _context.SaveChangesAsync(cancellationToken);

@@ -130,11 +130,11 @@ public static class DbInitializer
         
         var students = new Student[]
         {
-            new Student { Name = "Ana Garcia" },
-            new Student { Name = "Carlos Lopez" },
-            new Student { Name = "Daniel Ramirez" },
-            new Student { Name = "Eva Martinez" },
-            new Student { Name = "Fernando Torres" }
+            new Student { Name = "Ana Garcia", Credits = 1 },
+            new Student { Name = "Carlos Lopez", Credits = 10 },
+            new Student { Name = "Daniel Ramirez", Credits = 10 },
+            new Student { Name = "Eva Martinez", Credits = 10 },
+            new Student { Name = "Fernando Torres", Credits = 10 }
         };
 
         context.Students.AddRange(students);
@@ -158,18 +158,7 @@ public static class DbInitializer
             { 
                 StudentId = students[0].Id,
                 CourseId = courses[4].Id 
-            },
-
-            new StudentCourse 
-            { 
-                StudentId = students[1].Id,
-                CourseId = courses[6].Id 
-            },
-            new StudentCourse 
-            { 
-                StudentId = students[1].Id,
-                CourseId = courses[8].Id 
-            }
+            },           
         };
 
         context.StudentCourses.AddRange(enrollments);

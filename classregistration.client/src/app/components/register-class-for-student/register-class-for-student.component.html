@@ -1,11 +1,39 @@
-<div class="flex flex-column">
-    <p-button label="regresar" (onClick)="navigateToMainview()"></p-button>
+<div class="retorno">
+    <p-button label="regresar" icon="pi pi-arrow-left" [text]="true" severity="secondary"
+        (onClick)="navigateToMainview()"></p-button>
 </div>
 
-<p-card header="Registrar clase para estudiante">
-    <div class="pixOrder">
-        <p-dropdown [options]="students" [(ngModel)]="selectedStudent" optionLabel="name" placeholder="Selecciona un estudiante"></p-dropdown>
-        <p-dropdown [options]="courses" [(ngModel)]="selectedCourse" optionLabel="name" placeholder="Selecciona una clase"></p-dropdown>        
-            <input type="text" pInputText  id="Profesor" [ngModel]="selectedCourse?.teacherName"  placeholder="Profesor"/>               
-    </div>
-</p-card>
+<div class="flex gap-3">
+    <p-card header="Registrar clase para estudiante" class="flex-1">
+        <div class="pixOrder">
+            <p-dropdown class="recordItem" [options]="students" [(ngModel)]="selectedStudent" optionLabel="name"
+                placeholder="Selecciona un estudiante" (onChange)="onStudentChange($event)"></p-dropdown>
+            <p-dropdown class="recordItem" [options]="courses" [(ngModel)]="selectedCourse" optionLabel="name"
+                placeholder="Selecciona una clase"></p-dropdown>
+            <input class="recordItem" type="text" pInputText id="Profesor" [ngModel]="selectedCourse?.teacherName"
+                placeholder="Profesor" />
+        </div>
+        <div class="flex flex-column">
+            <p-button label="Registrar" (onClick)="registerClass()"></p-button>
+        </div>
+    </p-card>
+
+    <p-card header="Alumnos registrados a la clase" class="flex-1">
+        <div class="student-info" *ngFor="let studentPartner of studentPartners.students">
+            <div class="field">
+                <label>Nombre de la clase:</label>
+                <input type="text" [value]="studentPartner.courseName" readonly />
+            </div>
+            <div class="field">
+                <label>Alumnos registrados:</label>
+                <div class="student-list">
+                    <ul>
+                        <li *ngFor="let student of studentPartner.studentList">
+                            {{student.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</div>

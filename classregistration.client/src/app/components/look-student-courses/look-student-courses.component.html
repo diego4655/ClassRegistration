@@ -1,0 +1,51 @@
+<div class="retorno">
+    <p-button label="regresar" icon="pi pi-arrow-left" [text]="true" severity="secondary"
+        (onClick)="navigateToMainview()"></p-button>
+</div>
+
+<p-card>
+    <p-dropdown [options]="students" [(ngModel)]="selectedStudent" optionLabel="name"
+        placeholder="Selecciona un estudiante"></p-dropdown>
+    <p-button label="Ver clases" (click)="getStudentCourses()"></p-button>
+</p-card>
+
+<p-card *ngIf="studentCourses">
+    <div class="student-info">
+        <div class="field">
+            <label>Nombre del Estudiante:</label>
+            <input type="text" [(ngModel)]="studentCourses.student.name" [disabled]="true" />
+        </div>
+        <div class="field">
+            <label>Créditos Disponibles:</label>
+            <input type="text" [(ngModel)]="studentCourses.student.credits" [disabled]="true" />
+        </div>
+    </div>
+</p-card>
+
+
+<div class="card">
+    <p-table [value]="studentCourses.courses" styleClass="p-datatable-striped" *ngIf="studentCourses.courses.length > 0">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Créditos</th>
+                <th>Profesor</th>
+                <th>Eliminar Matricula</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-course>
+            <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.description}}</td>
+                <td>{{course.credits}}</td>
+                <td>{{course.teacherName}}</td>
+                <td><p-button label="Eliminar" (click)="deleteCourse(course.id, studentCourses.student.id)"></p-button></td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <div *ngIf="studentCourses.courses.length === 0" class="no-courses">
+        No hay cursos registrados para este estudiante
+    </div>
+</div>

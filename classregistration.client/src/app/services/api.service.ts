@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { Student } from '../Interfaces/student';
+import { Course } from '../Interfaces/course';
+import { StudentCourse, StudentCourseResponse, StudentPartnerResponse } from '../Interfaces/studentCouses';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,39 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   //#region Courses
-  getCourses(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/courses`, {
+  getCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(`${this.apiUrl}/courses`, {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
+  registerClass(studentCourse: StudentCourse): Observable<any> {
+    return this.http.post(`${this.apiUrl}/studentCourses`, JSON.stringify(studentCourse), {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
+  getStudentCourses(studentId: string): Observable<StudentCourseResponse> {
+    return this.http.get<StudentCourseResponse>(`${this.apiUrl}/studentCourses/AllCourseByStudent?studentId=${studentId}`, {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    }).pipe(
+      catchError((error: any) => {
+        throw new Error(error);
+      })
+    );
+  }
+
+  getStudentParners(studentId: string): Observable<StudentPartnerResponse> {
+    return this.http.get<StudentPartnerResponse>(`${this.apiUrl}/studentCourses/AllStudentparners?studentId=${studentId}`, {
       headers: new HttpHeaders({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -25,6 +58,7 @@ export class ApiService {
   //#region Students
   createStudent(student: string): Observable<any> {
     let studentObject: Student = {
+      id: '',
       name: student
     };
     return this.http.post(`${this.apiUrl}/student`, studentObject, {
@@ -35,9 +69,8 @@ export class ApiService {
     });
   }
 
-
-  getStudents(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/student`, {
+  getStudents(): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.apiUrl}/student`, {
       headers: new HttpHeaders({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -55,7 +88,6 @@ export class ApiService {
     });
   }
 
- 
   // Enrollments
   getEnrollments(): Observable<any> {
     return this.http.get(`${this.apiUrl}/Enrollments`, {
@@ -64,5 +96,9 @@ export class ApiService {
         'Content-Type': 'application/json'
       })
     });
+  }
+
+  deleteStudentCourse(courseId: string, studentId: string) {
+    return this.http.delete(`${this.apiUrl}/StudentCourses?courseId=${courseId}&studentId=${studentId}`);
   }
 } 

@@ -17,4 +17,8 @@ export class MainviewComponent {
   navigateToRegisterClassForStudent() {
     this.router.navigate(['/register-class-for-student']);
   }
+
+  navigateToLookStudentCourses() {
+    this.router.navigate(['/look-student-courses']);
+  }
 }

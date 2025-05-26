@@ -11,21 +11,8 @@ public class Student
     [StringLength(100)]
     public string Name { get; set; } = string.Empty;
 
+    [Required]    
+    [Range(0, 10)]
+    public int Credits {  get; set; }
     public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
-
-    public int GetTotalCredits()
-    {
-        return StudentCourses.Sum(sc => sc.Course.Credits);
-    }
-
-    public bool CanEnrollInCourse(Course course)
-    {
-        if (GetTotalCredits() >= 10)
-            return false;
-
-        if (StudentCourses.Any(sc => sc.Course.TeacherId == course.TeacherId))
-            return false;
-
-        return true;
-    }
 }
