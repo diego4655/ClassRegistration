@@ -1,27 +1,75 @@
-# ClassregistrationClient
+# Cliente - Sistema de Registro de Clases
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.19.
+## Requisitos Previos
+- Node.js (versión 18 o superior)
+- npm (incluido con Node.js)
+- Angular CLI (versión 16 o superior)
 
-## Development server
+## Instalación
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Instalar dependencias globales:
+```bash
+npm install -g @angular/cli
+```
 
-## Code scaffolding
+2. Instalar dependencias del proyecto:
+```bash
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Dependencias Principales
+- Angular 16
+- PrimeNG (UI Components)
+- PrimeIcons
+- SweetAlert2 (Notificaciones)
+- RxJS
 
-## Build
+## Estructura del Proyecto
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── look-student-courses/
+│   │   ├── register-class-for-student/
+│   │   └── register-student/
+│   ├── interfaces/
+│   ├── services/
+│   └── app.module.ts
+├── assets/
+└── environments/
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Configuración
 
-## Running unit tests
+ Configurar el proxy para desarrollo:
+   - El archivo `proxy.conf.json` está configurado para redirigir las peticiones API al servidor local
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Ejecución del Proyecto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Servidor de desarrollo:
+```bash
+ng serve
+```
+o arrancar directamente en visual studio
+La aplicación estará disponible en `http://localhost:50931`
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Características Implementadas
+- Registro de estudiantes
+- Registro de clases para estudiantes
+- Visualización de clases por estudiante
+- Interfaz de usuario moderna con PrimeNG
+- Manejo de errores
+- Notificaciones con SweetAlert2
+
+## Estructura de Componentes
+- `register-student`: Registro de nuevos estudiantes
+- `register-class-for-student`: Matrícula de estudiantes en cursos
+- `look-student-courses`: Visualización de cursos por estudiante
+
+## Servicios
+- `ApiService`: Manejo de todas las peticiones HTTP al backend
+- Implementación de interceptores para manejo de errores
+- Manejo de respuestas y errores HTTP
